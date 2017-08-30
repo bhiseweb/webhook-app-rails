@@ -1,0 +1,19 @@
+<table class="hover">
+  <thead>
+    <tr>
+      <% headers.each do |header_name| %>
+        <th><%= header_name %></th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @hooks.present? %>
+      <% @hooks.each do |hook| %>
+        <%= render partial: 'hook', locals: { hook: hook } %>
+      <% end %>
+    <% else %>
+      <tr><td colspan='7'>No Data Found</td></tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @hooks, renderer: FoundationPagination::Rails %>

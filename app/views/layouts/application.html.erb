@@ -1,14 +1,24 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>WebhookTestApp</title>
-    <%= csrf_meta_tags %>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <title>Hook App</title>
+
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
   </head>
 
   <body>
+    <nav class="top-bar" data-topbar>
+      <ul class="menu">
+        <li>
+          <h3>Hook Site</h3>
+        </li>
+      </ul>
+    </nav>
     <%= yield %>
   </body>
 </html>
