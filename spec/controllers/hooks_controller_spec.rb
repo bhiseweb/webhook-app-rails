@@ -1,6 +1,35 @@
 require 'rails_helper'
 
 RSpec.describe HooksController, type: :controller do
+
+  describe "GET #index" do
+  
+    before :each do
+      5.times { |i| FactoryGirl.create(:hook) }
+    end 
+    
+    it "return all webhooks" do
+      get :index
+      expect(assigns(:hooks).count).to eq 5
+    end
+    
+    it "should return success response" do
+      get :index
+      expect(response).to be_success
+    end
+    
+    it "should render index template" do
+      get :index
+      expect(response).to render_template("index")
+    end
+    
+    it "should return only 10 records at a time" do
+      6.times { |i| FactoryGirl.create(:hook) }
+      get :index
+      expect(assigns(:hooks).count).to eq 10
+    end
+    
+  end
     
   describe "POST #create", type: :request do
   
@@ -23,5 +52,7 @@ RSpec.describe HooksController, type: :controller do
       expect(Hook.first.data["name"]).to eq "Tester1"
     end  
   end
+  
+  
   
 end
